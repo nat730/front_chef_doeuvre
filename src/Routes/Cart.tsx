@@ -1,58 +1,24 @@
-import { useState, useEffect } from 'react';
+// Cart.tsx
+import React from 'react';
 
-const Cart = () => {
-  const [scrollTop, setScrollTop] = useState(0);
+interface CartProps {
+  cart: { itemName: string; quantity: number; price: number }[];
+}
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    setScrollTop(scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const x = 0;
-  const y = 1540;
-
-  const calculateStyles = () => {
-    const roundedScrollTop = Math.floor(scrollTop);
-
-    if (roundedScrollTop <= x) {
-      return {
-        height: '90%',
-        bottom: 0,
-        top: 'auto',
-      };
-    } else if (roundedScrollTop >= x && roundedScrollTop <= y) {
-      return {
-        height: '100%',
-        bottom: 0,
-        top: 'auto',
-      };
-    } else {
-      return {
-        height: '90%',
-        top: 0,
-        bottom: 'auto',
-      };
-    }
-  };
-
+const Cart: React.FC<CartProps> = ({ cart }) => {
   return (
-    <>
-      <div className="container-cart" style={calculateStyles()}>
-        <div className="cart">
-          {/* Contenu du panier */}
-          <h2>Panier</h2>
-          {/* ... Ajoutez ici le contenu du panier */}
-        </div>
+    <div className="container-cart">
+      <div className="cart">
+        <h2>Panier</h2>
+        {cart.map((item, index) => (
+          <div key={index}>
+            <p>{item.itemName}</p>
+            <p>Quantity: {item.quantity}</p>
+            <p>Price: {item.price}</p>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

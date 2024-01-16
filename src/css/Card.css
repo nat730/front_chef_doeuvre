@@ -7,15 +7,16 @@
   margin: 10px;
 }
 
-.image-container {
+.image-container-produit {
   flex: 1;
   overflow: hidden;
+  height: 100px;
+  widht: 50px;
 }
 
 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
 .info-container {
@@ -42,3 +43,18 @@ img {
 .right-align {
   text-align: right;
 }
+
+.image-container {
+  width: 300px; /* Définissez la largeur de votre conteneur */
+  height: 100px; /* Définissez la hauteur de votre conteneur */
+  overflow: hidden; /* Cachez toute partie de l'image qui dépasse du conteneur */
+}
+
+.image-container img {
+  max-width: 100%; /* La largeur de l'image ne dépassera pas la largeur du conteneur */
+  max-height: 100%; /* La hauteur de l'image ne dépassera pas la hauteur du conteneur */
+  display: block; /* Pour résoudre les problèmes d'espacement vertical */
+  margin: auto; /* Centrez l'image ho rizontalement dans le conteneur */
+  object-fit: cover;
+}
+

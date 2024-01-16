@@ -33,7 +33,7 @@ width : 100%;
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
-  width:80%;
+  width:100%;
 }
 
 header {
@@ -53,10 +53,6 @@ header {
   min-height: 10vh;
 }
 
-.user, .basket {
-  padding: 0 10px;
-}
-
 footer {
   background-color: #333;
   color: white;
@@ -72,6 +68,8 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  bottom: 0;
+  right: 0;
 }
 
 .cart {
@@ -81,4 +79,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: black;
+}
+
+.basket_Header {
+  z-index: 999;
 }
