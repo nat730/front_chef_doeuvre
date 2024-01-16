@@ -1,8 +1,7 @@
 const Footer = () => {
   return (
     <footer>
-      {/* Contenu du footer */}
-      <p>&copy; 2023 Mon Drive Leclerc. Tous droits réservés.</p>
+      <p>&copy; 2023 Mon Drive. Tous droits réservés.</p>
     </footer>
   );
 };

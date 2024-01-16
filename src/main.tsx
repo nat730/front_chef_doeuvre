@@ -11,7 +11,7 @@ import Acceuil from "./Routes/Accueil";
 const router = createBrowserRouter([
   { 
     path: "/", 
-    element: <Acceuil />
+    element: <Acceuil />,
   },
   {
     path: "/connexion",

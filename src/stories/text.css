@@ -1,0 +1,34 @@
+*{
+    font-size: 16px
+}
+
+.storybook-text {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    border: 0;
+    border-radius: 3em;
+    display: inline-block;
+    line-height: 1;
+  }
+  .storybook-text--primary {
+    color: #FF9F63;
+  }
+  .storybook-text--secondary {
+    color: #36339E;
+  }
+    .storybook-text--P {
+        font-size: 1rem;
+    }
+    .storybook-text--H1 {
+        font-size: 4rem;
+    }
+    .storybook-text--H2 {
+        font-size: 3rem;
+    }
+    .storybook-text--H3 {
+        font-size: 2rem;
+    }
+    .storybook-text--H4 {
+        font-size: 1.5rem;
+    }
+  
