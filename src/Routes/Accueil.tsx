@@ -7,17 +7,18 @@ import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
 
-interface Product {
+export interface Product {
   itemName: string;
   quantity: number;
   price: number;
-  selectedPrice: string;
+  selectedprice: string;
 }
+
 
 
 function App() {
   const [commonCardData, setCommonCardData] = useState({
-    imageUrl: '../../public/image/spaghetti.jpg',
+    imageUrl: '/image/spaghetti.jpg',
     description: 'pates',
     itemName: 'pates',
     price1: '12',
@@ -28,23 +29,37 @@ function App() {
   const [cart, setCart] = useState<Product[]>([]);
 
   const addToCart = (product: Product) => {
-    const existingProductIndex = cart.findIndex((item) => item.itemName === product.itemName);
-
+    const existingProductIndex = cart.findIndex(
+      (item) => item.itemName === product.itemName && item.price === product.price
+    );
+  
     if (existingProductIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity += product.quantity;
+      const updatedCart = cart.map((item, index) => {
+        if (index === existingProductIndex) {
+          return {
+            ...item,
+            quantity: item.quantity + product.quantity,
+          };
+        } else {
+          return item;
+        }
+      });
+  
       setCart(updatedCart);
     } else {
       const productToAdd: Product = product;
       setCart([...cart, productToAdd]);
     }
   };
+  
+  
+
 
   const updateCommonCardData = () => {
     setCommonCardData((prevData) => ({
       ...prevData,
-      itemName: 'Updated Item Name',
-      price1: 'Updated Price 1',
+      itemName: 'riz au sucre',
+      price1: "14",
     }));
   };
 

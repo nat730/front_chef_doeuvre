@@ -16,10 +16,6 @@ const router = createBrowserRouter([
   {
     path: "/connexion",
     element: <Connexion />,
-  },
-  {
-    path: "/addmusique",
-    element: <Acceuil />,
   }
 ]);
 
