@@ -52,9 +52,6 @@ function App() {
     }
   };
   
-  
-
-
   const updateCommonCardData = () => {
     setCommonCardData((prevData) => ({
       ...prevData,
