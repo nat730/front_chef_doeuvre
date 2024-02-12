@@ -32,3 +32,4 @@ dist-ssr
 /playwright/.cache/
 /dev-dist
 dev-dist/sw.js
+package-lock.json
