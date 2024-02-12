@@ -11,12 +11,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "e2e": "playwright test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run lint"
-    }
+    "e2e": "playwright test",
+    "prepare": "husky"
   },
   "husky": {
     "hooks": {
