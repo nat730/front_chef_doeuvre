@@ -19,6 +19,11 @@
       "pre-commit": "npm run format && npm run lint"
     }
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format"
+    }
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
