@@ -6,6 +6,7 @@ import Card from './card_horizontal';
 import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
+import Breadcrumbs from './breadcrumb';
 
 export interface Product {
   itemName: string;
@@ -13,8 +14,6 @@ export interface Product {
   price: number;
   selectedprice: string;
 }
-
-
 
 function App() {
   const [commonCardData, setCommonCardData] = useState({
@@ -62,7 +61,10 @@ function App() {
 
   return (
     <div className="app">
-       <Header cart={cart} /> 
+       <Header cart={cart} />
+       <Breadcrumbs paths={[
+          { label: 'Connexion', url: '/connexion' },
+       ]} />
       <div className="main">
         <div className="gauche">
           <div className="content">
