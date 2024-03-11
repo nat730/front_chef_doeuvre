@@ -1,12 +1,12 @@
 // App.tsx
 import { useState } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Card from './card_horizontal';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Card from '../components/card_horizontal';
 import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
-import Breadcrumbs from './breadcrumb';
+import Breadcrumbs from '../components/breadcrumb';
 
 export interface Product {
   itemName: string;
