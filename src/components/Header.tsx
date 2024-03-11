@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Cart from './Cart';
+import Cart from '../Routes/Cart';
 
 interface HeaderProps {
   cart: { itemName: string; quantity: number; price: number }[];

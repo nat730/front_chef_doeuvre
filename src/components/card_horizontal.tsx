@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../css/Card.css';
-import { Product } from './Accueil';
+import { Product } from '../Routes/Accueil';
 
 interface CardProps {
   imageUrl: string;
