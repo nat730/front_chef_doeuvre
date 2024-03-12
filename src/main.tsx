@@ -9,8 +9,8 @@ import Acceuil from "./Routes/Accueil";
 
 
 const router = createBrowserRouter([
-  { 
-    path: "/", 
+  {
+    path: "/",
     element: <Acceuil />,
   },
   {
