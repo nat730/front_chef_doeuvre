@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../css/connexion.css'
+import { Input } from '@/components/ui/input';
+import { Label } from '@radix-ui/react-label';
 
 const Connexion = () => {
   const [identifier, setIdentifier] = useState('');
@@ -21,24 +23,10 @@ const Connexion = () => {
     <div className="connexion-container">
       <h1>Me Connecter</h1>
       <form className="id-container" onSubmit={handleLogin}>
-        <label>
-          Identifiant
-        </label>
-        <input
-          type="text"
-          name="identifier"
-          value={identifier}
-          onChange={handleIdentifierChange}
-        />
-        <label>
-          Mot de passe
-        </label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
+        <Label htmlFor="email">Email</Label>
+        <Input type='email' name='email' value={identifier} placeholder='Email' onChange={handleIdentifierChange}></Input>
+        <Label htmlFor='password'>Mot de passe</Label>
+        <Input type='password' name='password' value={identifier} placeholder='Mot de passe' onChange={handlePasswordChange}></Input>
 
         <button type="submit">Se connecter</button>
       </form>
