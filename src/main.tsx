@@ -6,6 +6,7 @@ import Connexion from "./Routes/Connexion";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Acceuil from "./Routes/Accueil";
+import Inscription from "./Routes/Inscription";
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/connexion",
     element: <Connexion />,
+  },
+  {
+    path: '/inscription',
+    element: <Inscription />
   }
 ]);
 
