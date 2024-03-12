@@ -31,7 +31,7 @@ function App() {
     const existingProductIndex = cart.findIndex(
       (item) => item.itemName === product.itemName && item.price === product.price
     );
-  
+
     if (existingProductIndex !== -1) {
       const updatedCart = cart.map((item, index) => {
         if (index === existingProductIndex) {
@@ -43,14 +43,14 @@ function App() {
           return item;
         }
       });
-  
+
       setCart(updatedCart);
     } else {
       const productToAdd: Product = product;
       setCart([...cart, productToAdd]);
     }
   };
-  
+
   const updateCommonCardData = () => {
     setCommonCardData((prevData) => ({
       ...prevData,
@@ -70,7 +70,7 @@ function App() {
           <div className="content">
             {[...Array(2)].map((_, index) => (
               <Card key={index} {...commonCardData} addToCart={addToCart} />
-            ))} 
+            ))}
           </div>
           <div className="content">
             <button onClick={updateCommonCardData}>Update Common Card Data</button>
