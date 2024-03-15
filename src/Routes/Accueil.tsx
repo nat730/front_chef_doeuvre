@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Card from '../components/card_horizontal';
@@ -25,26 +25,6 @@ function App() {
     pricePerKg2: '36',
   });
   const [cart, setCart] = useState<Product[]>([]);
-
-  useEffect(() => {
-
-    const getUserInfo = async () => {
-      try {
-        const response = await fetch('http://localhost:1337/user/me', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        const data = await response.json();
-        if (data) {
-
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getUserInfo();
-  }, [])
 
   const addToCart = (product: Product) => {
     const existingProductIndex = cart.findIndex(
