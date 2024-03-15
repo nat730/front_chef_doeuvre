@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div className="app">
-       <Header cart={cart} />
+       <Header />
        <Breadcrumbs paths={[
           { label: 'Connexion', url: '/connexion' },
        ]} />
