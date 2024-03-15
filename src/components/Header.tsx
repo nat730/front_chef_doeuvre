@@ -1,8 +1,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserIcon, Menu, ShoppingCart } from 'lucide-react';
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Header = () => {
+
+  const navigate = useNavigate();
+
+  const handleConnexionClick = useCallback(
+    () => {
+      navigate('/connexion');
+    }, [navigate])
 
   return (
     <header className="header-content">
@@ -15,7 +24,7 @@ const Header = () => {
         <h1 className="Title">Drive Solidaire</h1>
       </div>
       <div className='icons-header-container'>
-        <CircleUserIcon size={25} strokeWidth={2} className="user-header" />
+        <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={handleConnexionClick}/>
         <div className='cart-icon-container'>
           <ShoppingCart size={25} strokeWidth={2} className="basket-header"/>
         </div>
