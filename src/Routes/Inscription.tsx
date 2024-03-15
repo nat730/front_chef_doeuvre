@@ -17,6 +17,10 @@ const Inscription = () => {
     setFirstname(e.target.value);
   }
 
+  const handleConnexionClick = () => {
+    navigate('/connexion');
+  }
+
   const handleLastnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLastname(e.target.value);
   }
@@ -34,7 +38,7 @@ const Inscription = () => {
   }
 
   const handleInscriptionClick = useCallback(
-    async() => {
+    async() => {  
       const response = await fetch('http://localhost:1337/auth/local/register', {
         method: 'POST',
         headers: {
@@ -119,7 +123,7 @@ const Inscription = () => {
         >M'inscrire
         </Button>
         <p>Déjà un compte ?</p>
-        <Button variant='ghost' className='font-semibold'>Se connecter</Button>
+        <Button variant='ghost' className='font-semibold' onClick={handleConnexionClick}>Se connecter</Button>
       </CardFooter>
     </Card>
     </div>
