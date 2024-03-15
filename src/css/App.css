@@ -26,6 +26,49 @@ body{
   width : 100%;
 }
 
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  min-height: 10vh;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+.main-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.icons-header-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.cart-icon-container {
+  display: flex;
+  justify-content: center;
+  background-color: #ff9f63;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  height:65%;
+}
+
 .main {
   display: flex;
   flex-direction: row;
@@ -50,23 +93,6 @@ body{
   display: flex;
   flex-direction: row;
   width:100%;
-}
-
-header {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  min-height: 10vh;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  color: white;
-  text-align: center;
-  min-height: 10vh;
 }
 
 footer {
