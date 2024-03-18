@@ -5,7 +5,7 @@ import {
 import Connexion from "./Routes/Connexion";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Acceuil from "./Routes/Accueil";
+import Accueil from "./Routes/Accueil";
 import Inscription from "./Routes/Inscription";
 import Page from "./components/Page";
 
@@ -13,7 +13,7 @@ import Page from "./components/Page";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Page protectedPage={false} Content={Acceuil} />,
+    element: <Page protectedPage={false} Content={Accueil} />,
   },
   {
     path: "/connexion",
