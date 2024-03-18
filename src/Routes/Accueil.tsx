@@ -16,7 +16,7 @@ export interface Product {
 function App() {
 
   const [user, setUser] = useState<string | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   useEffect(
     () => {
@@ -47,17 +47,17 @@ function App() {
     }, []
   );
 
-    const toggleMenu = useCallback(() => {
+    const toggleUserMenu = useCallback(() => {
       console.log("toggleMenu");
-      setIsMenuOpen(!isMenuOpen);
-    }, [isMenuOpen])
+      setIsUserMenuOpen(!isUserMenuOpen);
+    }, [isUserMenuOpen])
 
   return (
     <div className="app">
-        {isMenuOpen && <div className='user-menu'>
+        {isUserMenuOpen && <div className='user-menu'>
           <div className="user-menu-top-container">
             <div className='user-menu-close'>
-              <X size={25} strokeWidth={2} className="close-user-menu" onClick={() => toggleMenu()}/>
+              <X size={25} strokeWidth={2} className="close-user-menu" onClick={() => toggleUserMenu()}/>
             </div>
             <div className="user-menu-title-container">
               <h1 className="user-menu-title">Bonjour {user}</h1>
@@ -77,7 +77,7 @@ function App() {
             </div>
           </div>
         </div>}
-       <Header username={user} toggleMenu={toggleMenu}/>
+       <Header username={user} toggleUserMenu={() => toggleUserMenu()}/>
       <div className="main">
         <div className="gauche">
           <div className="content">
