@@ -3,7 +3,8 @@ import Footer from '../components/Footer';
 import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { X } from 'lucide-react';
 
 export interface Product {
   itemName: string;
@@ -15,6 +16,7 @@ export interface Product {
 function App() {
 
   const [user, setUser] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(
     () => {
@@ -45,17 +47,37 @@ function App() {
     }, []
   );
 
+    const toggleMenu = useCallback(() => {
+      console.log("toggleMenu");
+      setIsMenuOpen(!isMenuOpen);
+    }, [isMenuOpen])
+
   return (
     <div className="app">
-        <div className='user-menu'>
-          <div className="user-menu-title-container">
-            <h1 className="user-menu-title">Bonjour {user}</h1>
+        {isMenuOpen && <div className='user-menu'>
+          <div className="user-menu-top-container">
+            <div className='user-menu-close'>
+              <X size={25} strokeWidth={2} className="close-user-menu" onClick={() => toggleMenu()}/>
+            </div>
+            <div className="user-menu-title-container">
+              <h1 className="user-menu-title">Bonjour {user}</h1>
+            </div>
           </div>
           <div className="user-menu-content">
-            <h1>Mon profil</h1>
+            <div className="user-menu-profil-content">
+              <h1>Mon profil</h1>
+              <h2 className='user-menu-secondary-title'>Mon compte</h2>
+              <h2 className='user-menu-secondary-title'>Mes préférences</h2>
+              <h2 className='user-menu-secondary-title'>Mon compte</h2>
+            </div>
+            <div className="user-menu-orders-content">
+              <h1>Mes commandes</h1>
+              <h2 className='user-menu-secondary-title'>Mon historique de commande</h2>
+              <h2 className='user-menu-secondary-title'>Mes commandes en cours</h2>
+            </div>
           </div>
-        </div>
-       <Header username={user}/>
+        </div>}
+       <Header username={user} toggleMenu={toggleMenu}/>
       <div className="main">
         <div className="gauche">
           <div className="content">

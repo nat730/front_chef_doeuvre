@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 type HeaderProps = {
   username: string | null;
+  toggleMenu: () => void;
 };
 
-const Header = ({username}: HeaderProps) => {
+const Header = ({username, toggleMenu}: HeaderProps) => {
 
   const navigate = useNavigate();
 
@@ -15,6 +16,7 @@ const Header = ({username}: HeaderProps) => {
     () => {
       navigate('/connexion');
     }, [navigate])
+
 
   return (
     <header className="header-content">
@@ -28,7 +30,7 @@ const Header = ({username}: HeaderProps) => {
       </div>
       <div className='icons-header-container'>
         {!username && <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={handleConnexionClick}/>}
-        {username && <UserCheck size={25} strokeWidth={2} className="user-header"/>}
+        {username && <UserCheck size={25} strokeWidth={2} className="user-header" onClick={() => toggleMenu()}/>}
         <div className='cart-icon-container'>
           <ShoppingCart size={25} strokeWidth={2} className="basket-header"/>
         </div>
