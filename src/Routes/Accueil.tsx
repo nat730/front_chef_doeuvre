@@ -14,7 +14,7 @@ export interface Product {
   selectedprice: string;
 }
 
-function App() {
+function Accueil() {
 
   const [user, setUser] = useState<string | null>(null);
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
@@ -79,4 +79,4 @@ function App() {
   );
 }
 
-export default App;
+export default Accueil;
