@@ -102,6 +102,12 @@ header {
   justify-content: flex-end;
 }
 
+.main-menu-content {
+  background-color: #C36794;
+  padding: 1rem;
+  height: 80%;
+}
+
 .user-menu {
   width: 70%;
   height: 100%;
