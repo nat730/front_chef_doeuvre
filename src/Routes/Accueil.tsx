@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface Product {
   itemName: string;
@@ -13,6 +13,8 @@ export interface Product {
 }
 
 function App() {
+
+  const [user, setUser] = useState<string | null>(null);
 
   useEffect(
     () => {
@@ -25,6 +27,7 @@ function App() {
         const data = await response.json();
         if(data) {
           console.log(data);
+          setUser(data.firstName)
         }
       };
       getUserInfo();
