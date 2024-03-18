@@ -85,7 +85,9 @@ header {
   right: 0;
 }
 
-.user-menu-title-container {
+.user-menu-top-container {
+  display: flex;
+  flex-direction: column;
   height: 20%;
   background-color: #36339E;
   padding: 1rem;
@@ -93,6 +95,22 @@ header {
   display: flex;
   align-items: center;
   border-bottom: #f0f0f0 1px solid;
+}
+
+.user-menu-close {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  color: #fff;
+}
+
+.user-menu-title-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #fff;
 }
 
 .user-menu-content {
@@ -111,7 +129,7 @@ header {
 .basket {
   flex-grow: 1;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   height: 20%;
 }
 
