@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 type HeaderProps = {
   username: string | null;
+  toggleMainMenu: () => void;
   toggleUserMenu: () => void;
 };
 
-const Header = ({username, toggleUserMenu}: HeaderProps) => {
+const Header = ({username, toggleMainMenu, toggleUserMenu}: HeaderProps) => {
 
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const Header = ({username, toggleUserMenu}: HeaderProps) => {
 
   return (
     <header className="header-content">
-      <Menu size={25} strokeWidth={2} className="menu-header" />
+      <Menu size={25} strokeWidth={2} className="menu-header" onClick={() => toggleMainMenu()}/>
       <div className='main-title-container'>
         <Avatar>
           <AvatarImage src="/image/9k.jpg" />

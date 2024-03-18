@@ -5,6 +5,7 @@ import '../css/Card.css';
 import '../css/mobile.css';
 import { useCallback, useEffect, useState } from 'react';
 import { X } from 'lucide-react';
+import UserMenu from '@/components/UserMenu';
 
 export interface Product {
   itemName: string;
@@ -16,6 +17,7 @@ export interface Product {
 function App() {
 
   const [user, setUser] = useState<string | null>(null);
+  const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   useEffect(
@@ -47,37 +49,35 @@ function App() {
     }, []
   );
 
+  const toggleMainMenu = useCallback(
+    () => {
+      setIsMainMenuOpen(!isMainMenuOpen);
+    }, [isMainMenuOpen])
+
     const toggleUserMenu = useCallback(() => {
-      console.log("toggleMenu");
       setIsUserMenuOpen(!isUserMenuOpen);
     }, [isUserMenuOpen])
 
   return (
     <div className="app">
-        {isUserMenuOpen && <div className='user-menu'>
-          <div className="user-menu-top-container">
-            <div className='user-menu-close'>
-              <X size={25} strokeWidth={2} className="close-user-menu" onClick={() => toggleUserMenu()}/>
-            </div>
-            <div className="user-menu-title-container">
-              <h1 className="user-menu-title">Bonjour {user}</h1>
-            </div>
+      {isMainMenuOpen && <div className='main-menu'>
+        <div className="main-menu-top-container">
+          <div className='main-menu-close'>
+            <X size={25} strokeWidth={2} className="close-main-menu" onClick={() => toggleMainMenu()}/>
           </div>
-          <div className="user-menu-content">
-            <div className="user-menu-profil-content">
-              <h1>Mon profil</h1>
-              <h2 className='user-menu-secondary-title'>Mon compte</h2>
-              <h2 className='user-menu-secondary-title'>Mes préférences</h2>
-              <h2 className='user-menu-secondary-title'>Mon compte</h2>
-            </div>
-            <div className="user-menu-orders-content">
-              <h1>Mes commandes</h1>
-              <h2 className='user-menu-secondary-title'>Mon historique de commande</h2>
-              <h2 className='user-menu-secondary-title'>Mes commandes en cours</h2>
-            </div>
+          <div className="main-menu-title-container">
+            <h1 className="main-menu-title">Drive solidaire</h1>
           </div>
-        </div>}
-       <Header username={user} toggleUserMenu={() => toggleUserMenu()}/>
+        </div>
+        <div className="main-menu-content">
+          <h1>Accueil</h1>
+          <h1>Produits</h1>
+          <h1>Catégories</h1>
+          <h1>Connexion</h1>
+        </div>
+      </div>}
+      {isUserMenuOpen && <UserMenu user={user} toggleUserMenu={() => toggleUserMenu()}/>}
+       <Header username={user} toggleMainMenu={() => toggleMainMenu()} toggleUserMenu={() => toggleUserMenu()}/>
       <div className="main">
         <div className="gauche">
           <div className="content">
