@@ -47,6 +47,14 @@ function App() {
 
   return (
     <div className="app">
+        <div className='user-menu'>
+          <div className="user-menu-title-container">
+            <h1 className="user-menu-title">Bonjour {user}</h1>
+          </div>
+          <div className="user-menu-content">
+            <h1>Mon profil</h1>
+          </div>
+        </div>
        <Header username={user}/>
       <div className="main">
         <div className="gauche">
