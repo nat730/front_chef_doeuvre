@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
+import { useEffect } from 'react';
 
 export interface Product {
   itemName: string;
@@ -13,6 +14,21 @@ export interface Product {
 
 function App() {
 
+  useEffect(
+    () => {
+        const getUserInfo = async () => {
+          const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
+            headers: {
+              'Application-Type': 'application/json',
+            }
+          });
+        const data = await response.json();
+        if(data) {
+          console.log(data);
+        }
+      };
+      getUserInfo();
+    }, []);
 
   return (
     <div className="app">
