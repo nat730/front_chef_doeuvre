@@ -19,15 +19,16 @@ function App() {
   useEffect(
     () => {
         const getUserInfo = async () => {
+          console.log('fetching user info');
           const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
             headers: {
               'Application-Type': 'application/json',
             }
           });
         const data = await response.json();
-        if(data) {
+        if(!data.error) {
           console.log(data);
-          setUser(data.firstName)
+          setUser(data.firstName);
         }
       };
       getUserInfo();
@@ -41,6 +42,7 @@ function App() {
           <div className="content">
           </div>
           <div className="content">
+          {user && <h1>Bonjour {user}</h1>}
           </div>
         </div>
         <div className="basket">
