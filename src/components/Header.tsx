@@ -18,7 +18,7 @@ const Header = () => {
       <Menu size={25} strokeWidth={2} className="menu-header" />
       <div className='main-title-container'>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage src="/image/9k.jpg" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <h1 className="Title">Drive Solidaire</h1>
