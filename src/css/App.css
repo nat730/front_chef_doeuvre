@@ -76,6 +76,32 @@ header {
   height: 100%;
 }
 
+.main-menu-top-container {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  background-color: #36339E;
+  padding: 1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom: #f0f0f0 1px solid;
+}
+
+.main-menu {
+  width: 70%;
+  height: 100%;
+  color: #fff;
+  z-index: 4;
+  position: absolute;
+  left: 0
+}
+
+.main-menu-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .user-menu {
   width: 70%;
   height: 100%;
@@ -92,8 +118,6 @@ header {
   background-color: #36339E;
   padding: 1rem;
   color: #fff;
-  display: flex;
-  align-items: center;
   border-bottom: #f0f0f0 1px solid;
 }
 
