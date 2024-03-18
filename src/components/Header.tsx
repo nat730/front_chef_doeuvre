@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 type HeaderProps = {
   username: string | null;
-  toggleMenu: () => void;
+  toggleUserMenu: () => void;
 };
 
-const Header = ({username, toggleMenu}: HeaderProps) => {
+const Header = ({username, toggleUserMenu}: HeaderProps) => {
 
   const navigate = useNavigate();
 
@@ -29,8 +29,8 @@ const Header = ({username, toggleMenu}: HeaderProps) => {
         <h1 className="Title">Drive Solidaire</h1>
       </div>
       <div className='icons-header-container'>
-        {!username && <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={handleConnexionClick}/>}
-        {username && <UserCheck size={25} strokeWidth={2} className="user-header" onClick={() => toggleMenu()}/>}
+        {!username && <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={() => handleConnexionClick()}/>}
+        {username && <UserCheck size={25} strokeWidth={2} className="user-header" onClick={() => toggleUserMenu()}/>}
         <div className='cart-icon-container'>
           <ShoppingCart size={25} strokeWidth={2} className="basket-header"/>
         </div>
