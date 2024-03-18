@@ -39,7 +39,6 @@ function App() {
         }
         if (localStorage.getItem('token')) {
         getUserInfo();
-        console.log(user);
       } else {
         console.log('no token');
       }
@@ -48,7 +47,7 @@ function App() {
 
   return (
     <div className="app">
-       <Header />
+       <Header username={user}/>
       <div className="main">
         <div className="gauche">
           <div className="content">

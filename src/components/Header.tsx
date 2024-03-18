@@ -1,10 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CircleUserIcon, Menu, ShoppingCart } from 'lucide-react';
+import { CircleUserIcon, Menu, ShoppingCart, UserCheck } from 'lucide-react';
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
+type HeaderProps = {
+  username: string | null;
+};
 
-const Header = () => {
+const Header = ({username}: HeaderProps) => {
 
   const navigate = useNavigate();
 
@@ -24,7 +27,8 @@ const Header = () => {
         <h1 className="Title">Drive Solidaire</h1>
       </div>
       <div className='icons-header-container'>
-        <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={handleConnexionClick}/>
+        {!username && <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={handleConnexionClick}/>}
+        {username && <UserCheck size={25} strokeWidth={2} className="user-header"/>}
         <div className='cart-icon-container'>
           <ShoppingCart size={25} strokeWidth={2} className="basket-header"/>
         </div>
