@@ -7,20 +7,21 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Acceuil from "./Routes/Accueil";
 import Inscription from "./Routes/Inscription";
+import Page from "./components/Page";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Acceuil />,
+    element: <Page protectedPage={false} Content={Acceuil} />,
   },
   {
     path: "/connexion",
-    element: <Connexion />,
+    element: <Page protectedPage={false} Content={Connexion} />,
   },
   {
     path: '/inscription',
-    element: <Inscription />
+    element: <Page protectedPage={false} Content={Inscription} />
   }
 ]);
 
