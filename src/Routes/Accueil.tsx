@@ -18,21 +18,33 @@ function App() {
 
   useEffect(
     () => {
-        const getUserInfo = async () => {
-          console.log('fetching user info');
-          const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
-            headers: {
-              'Application-Type': 'application/json',
+      const getUserInfo = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
+              headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+              }
+            });
+            const data = await response.json();
+            if(data) {
+              console.log(data);
+              setUser(data.firstname);
+              console.log(user);
+            } else {
+              console.log('no user info');
             }
-          });
-        const data = await response.json();
-        if(!data.error) {
-          console.log(data);
-          setUser(data.firstName);
+          } catch (error) {
+            console.log('error', error);
+          }
         }
-      };
-      getUserInfo();
-    }, []);
+        if (localStorage.getItem('token')) {
+        getUserInfo();
+        console.log(user);
+      } else {
+        console.log('no token');
+      }
+    }, []
+  );
 
   return (
     <div className="app">

@@ -33,6 +33,7 @@ const Connexion = () => {
     const data = await response.json();
     if(data) {
       navigate('/')
+      localStorage.setItem('token', data.jwtToken)
     }
     else {
       setIdentifier('')
