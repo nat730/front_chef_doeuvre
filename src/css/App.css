@@ -122,22 +122,27 @@ header {
   width: 100%;
   padding: 1rem;
   gap: 1rem;
+  border-bottom: #f0f0f0 1px solid;
 }
 
 .categories-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
   padding: 1rem;
   gap: 1rem;
+  border-bottom: #f0f0f0 1px solid;
 }
 
 .about-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
   padding: 1rem;
   gap: 1rem;
+  border-bottom: #f0f0f0 1px solid;
 }
 
 .right-main-menu {
