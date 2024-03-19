@@ -8,6 +8,7 @@ import ReactDOM from "react-dom/client";
 import Accueil from "./Routes/Accueil";
 import Inscription from "./Routes/Inscription";
 import Page from "./components/Page";
+import UserInfo from "./Routes/Profil";
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: '/inscription',
     element: <Page protectedPage={false} Content={Inscription} />
+  },
+  {
+    path: '/user',
+    element: <Page protectedPage={true} Content={UserInfo} />
   }
 ]);
 
