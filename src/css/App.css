@@ -156,7 +156,7 @@ header {
 .right-main-menu {
   width: 20%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .main-menu-close {
@@ -183,12 +183,24 @@ header {
 }
 
 .user-menu {
-  width: 70%;
+  display: flex;
   height: 100%;
+  width: 100%;
   color: #fff;
   z-index: 4;
   position: absolute;
   right: 0;
+}
+
+.left-user-menu {
+  width: 20%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.right-user-menu {
+  height: 100%;
+  width: 100%;
 }
 
 .user-menu-top-container {
@@ -198,14 +210,15 @@ header {
   background-color: #36339E;
   padding: 1rem;
   color: #fff;
-  border-bottom: #f0f0f0 1px solid;
+  border-bottom: #303030 1px solid;
 }
 
 .user-menu-close {
-  display: flex;
-  justify-content: flex-end;
   width: 100%;
-  color: #fff;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .user-menu-title-container {
@@ -218,9 +231,28 @@ header {
 }
 
 .user-menu-content {
-  background-color: #C36794;
+  background-color: #E4E4E4;
+  color: #303030;
   padding: 1rem;
   height: 80%;
+}
+
+.user-menu-secondary-title-container {
+  padding-left: 1rem;
+}
+
+.user-menu-profil-content {
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  border-bottom: #303030 1px solid;
+}
+
+.user-menu-orders-content {
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  border-bottom: #303030 1px solid;
 }
 
 .gauche {
