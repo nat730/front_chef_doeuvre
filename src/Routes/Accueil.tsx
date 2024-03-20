@@ -8,10 +8,24 @@ import UserMenu from '@/components/UserMenu';
 import MainMenu from '@/components/MainMenu';
 
 export interface Product {
-  itemName: string;
-  quantity: number;
-  price: number;
-  selectedprice: string;
+    id: number;
+    name: string;
+    description: string;
+    unit_value: string;
+    category_id: number;
+    updated_at: string;
+    created_at: string;
+    newCatalogItem: {
+      id: number;
+      price: number;
+      price_asso: number;
+      image: string;
+      product_id: number;
+      updated_at: string;
+      created_at: string;
+      catalog_id: number | null;
+    },
+    categoryName: string;
 }
 
 function Accueil() {
@@ -19,6 +33,7 @@ function Accueil() {
   const [user, setUser] = useState<string | null>(null);
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(
     () => {
@@ -45,6 +60,26 @@ function Accueil() {
     }, []
   );
 
+  useEffect(
+    () => {
+      const getProducts = async () => {
+        try {
+          const response = await fetch('http://localhost:3000/api/productcatalogitem', {
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            }
+          });
+          const data = await response.json();
+          setProducts(data);
+          console.log('data', data);
+          console.log('products', products);
+        } catch (error) {
+          console.log('error', error);
+      }
+    }
+    getProducts();
+  }, []);
+
   const toggleMainMenu = useCallback(
     () => {
       setIsMainMenuOpen(!isMainMenuOpen);
@@ -60,12 +95,15 @@ function Accueil() {
       {isUserMenuOpen && <UserMenu user={user} toggleUserMenu={() => toggleUserMenu()}/>}
        <Header username={user} toggleMainMenu={() => toggleMainMenu()} toggleUserMenu={() => toggleUserMenu()}/>
       <div className="main">
-        <div className="gauche">
-          <div className="content">
-          </div>
-          <div className="content">
+        <div className="content">
           {user && <h1>Bonjour {user}</h1>}
-          </div>
+        </div>
+        <div className="product-content">
+          {products &&
+            products.map((product, index) => (
+              <div key={index}>{product.name}</div>
+            ))
+          }
         </div>
         <div className="basket">
         </div>
