@@ -14,7 +14,7 @@ interface User {
 }
 
 const UserInfo = () => {
-    const [user, setUser] = useState<User | String | null>(null);
+    const [user, setUser] = useState<User|null>(null);
     const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   
