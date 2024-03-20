@@ -6,9 +6,14 @@ interface MainMenuProps {
   toggleMainMenu: () => void;
 }
 
-const MainMenu = ({toggleMainMenu}: MainMenuProps) => {
+const MainMenu = ({ toggleMainMenu }: MainMenuProps) => {
 
   const navigate = useNavigate();
+
+  const isAuthenticated = () => {
+    const token = localStorage.getItem('token');
+    return token !== null;
+  };
 
   const handleAboutClick = useCallback(
     () => {
@@ -19,6 +24,12 @@ const MainMenu = ({toggleMainMenu}: MainMenuProps) => {
     () => {
       navigate('/connexion');
     }, [navigate]);
+
+    const handleLogoutClick = useCallback(() => {
+      localStorage.removeItem('token');
+      fetch('http://localhost:3000/api/auth/local/logout')
+      navigate('/');
+    }, [navigate]);    
 
   return (
     <div className='main-menu'>
@@ -31,25 +42,25 @@ const MainMenu = ({toggleMainMenu}: MainMenuProps) => {
         </div>
         <div className="main-menu-content">
           <div className="home-container" onClick={() => toggleMainMenu()}>
-            <Home size={25} strokeWidth={2} className="home-icon"/>
+            <Home size={25} strokeWidth={2} className="home-icon" />
             <h2>Accueil</h2>
           </div>
           <div className="categories-container">
-            <List size={25} strokeWidth={2} className="categories-icon"/>
+            <List size={25} strokeWidth={2} className="categories-icon" />
             <h2>Catégories</h2>
           </div>
           <div className="about-container" onClick={handleAboutClick}>
-            <MessageCircleQuestion size={25} strokeWidth={2} className="about-icon"/>
+            <MessageCircleQuestion size={25} strokeWidth={2} className="about-icon" />
             <h2>Qui sommes-nous ?</h2>
           </div>
-          <div className='connexion-container' onClick={handleConnexionClick}>
-            <h2>Connexion</h2>
+          <div className='connexion-container' onClick={isAuthenticated() ? handleLogoutClick : handleConnexionClick}>
+            {isAuthenticated() ? <h2>Déconnexion</h2> : <h2>Connexion</h2>}
           </div>
         </div>
       </div>
       <div className="right-main-menu" onClick={() => toggleMainMenu()}>
         <div className='main-menu-close'>
-          <X size={25} strokeWidth={2} className="close-main-menu"/>
+          <X size={25} strokeWidth={2} className="close-main-menu" />
         </div>
       </div>
     </div>
