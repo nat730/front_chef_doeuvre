@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/user',
-    element: <Page protectedPage={true} Content={UserInfo} />
+    element: <Page protectedPage={false} Content={UserInfo} />
   }
 ]);
 
