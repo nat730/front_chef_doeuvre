@@ -31,11 +31,7 @@ function Accueil() {
             });
             const data = await response.json();
             if(data) {
-              console.log(data);
               setUser(data.firstname);
-              console.log(user);
-            } else {
-              console.log('no user info');
             }
           } catch (error) {
             console.log('error', error);
