@@ -10,28 +10,37 @@ const Page = ({protectedPage, Content}: IPageProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (protectedPage && !token) {
+      navigate('/connexion');
+      return;
+    }
+
     const getUserInfo = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Authorization': 'Bearer ' + token,
           }
         })
         const data = await response.json();
-        console.log('data', data);
         if (data.error) {
           localStorage.removeItem('token');
           navigate('/connexion');
         }
       } catch (error) {
-        console.log('error', error);
+        localStorage.removeItem('token');
       }
     }
-    getUserInfo();
-  }, [protectedPage, navigate])
+
+    if (protectedPage && token) {
+      getUserInfo();
+    }
+  }, [protectedPage]);
 
   return (
-    <div className={"route" + protectedPage ? " protected-route" : ""}>
+    <div className={"route" + (protectedPage ? " protected-route" : "")}>
       <Content />
     </div>
   )
