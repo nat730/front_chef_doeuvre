@@ -38,8 +38,6 @@ function Accueil() {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
-  const [quantity, setQuantity] = useState<number>(1);
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
   useEffect(
     () => {
@@ -97,22 +95,6 @@ function Accueil() {
     }, [isUserMenuOpen]
   )
 
-  const handleQuantityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(parseInt(e.target.value));
-    setSelectedProduct(e.target.name);
-  }, []);
-
-  const handleAddToCartClick = useCallback(
-    async () => {
-      const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-      console.log('cart', {product: selectedProduct, quantity: quantity});
-      if(!cart) {
-        localStorage.setItem('cart', JSON.stringify([{product: selectedProduct, quantity: quantity}]));
-      } else {
-        localStorage.setItem('cart', JSON.stringify({product: products, quantity: quantity}, ...cart))
-      }
-    }, []);
-
   return (
     <div className="app">
       {isMainMenuOpen && <MainMenu toggleMainMenu={() => toggleMainMenu()}/>}
@@ -138,8 +120,8 @@ function Accueil() {
                 ))
                 }
                 <div className='product-cta'>
-                  <input type="number" className='input-quantity' name={product.name} onChange={handleQuantityChange}/>
-                  <Button onClick={handleAddToCartClick}>Ajouter au panier</Button>
+                  <input type="number" className='input-quantity' name={product.name}/>
+                  <Button>Ajouter au panier</Button>
                 </div>
               </Card>
             ))
