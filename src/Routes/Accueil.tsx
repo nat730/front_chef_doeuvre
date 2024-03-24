@@ -13,23 +13,23 @@ export interface Product {
     id: number;
     name: string;
     description: string;
-    unit_value: string;
     category_id: number;
-    updated_at: string;
+    unit_value: string;
     created_at: string;
-    CatalogItem: CatalogItem,
+    updated_at: string;
+    CatalogItems: [
+      {
+        id: number;
+        price: number;
+        price_by_unity_asso: number;
+        image: string;
+        product_id: number;
+        updated_at: string;
+        created_at: string;
+        catalog_id: number | null;
+      }
+    ]
     categoryName: string;
-}
-
-export interface CatalogItem {
-  id: number;
-  price: number;
-  price_asso: number;
-  image: string;
-  product_id: number;
-  updated_at: string;
-  created_at: string;
-  catalog_id: number | null;
 }
 
 function Accueil() {
@@ -38,6 +38,8 @@ function Accueil() {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
   useEffect(
     () => {
@@ -64,8 +66,8 @@ function Accueil() {
     }, []
   );
 
- useEffect(
-   () => {
+  useEffect(
+    () => {
      const getProducts = async () => {
        try {
          const response = await fetch('http://localhost:3000/api/productcatalogitem', {
@@ -76,22 +78,40 @@ function Accueil() {
          const data = await response.json();
          setProducts(data);
          console.log('data', data);
-         console.log('products', products);
        } catch (error) {
          console.log('error', error);
      }
    }
    getProducts();
+   console.log('products', products);
  }, []);
 
   const toggleMainMenu = useCallback(
     () => {
       setIsMainMenuOpen(!isMainMenuOpen);
-    }, [isMainMenuOpen])
+    }, [isMainMenuOpen]
+  )
 
-    const toggleUserMenu = useCallback(() => {
+  const toggleUserMenu = useCallback(() => {
       setIsUserMenuOpen(!isUserMenuOpen);
-    }, [isUserMenuOpen])
+    }, [isUserMenuOpen]
+  )
+
+  const handleQuantityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuantity(parseInt(e.target.value));
+    setSelectedProduct(e.target.name);
+  }, []);
+
+  const handleAddToCartClick = useCallback(
+    async () => {
+      const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+      console.log('cart', {product: selectedProduct, quantity: quantity});
+      if(!cart) {
+        localStorage.setItem('cart', JSON.stringify([{product: selectedProduct, quantity: quantity}]));
+      } else {
+        localStorage.setItem('cart', JSON.stringify({product: products, quantity: quantity}, ...cart))
+      }
+    }, []);
 
   return (
     <div className="app">
@@ -106,13 +126,21 @@ function Accueil() {
           {products &&
             products.map((product, index) => (
               <Card key={index} className="product-card">
-                {product.CatalogItem &&
-                  <img src={product.CatalogItem.image} alt={product.name} />
+                {product.CatalogItems !== undefined &&
+                  product.CatalogItems.map((item, index) => (
+                    <img key={index} src={item.image} alt={product.name} />
+                  ))
                 }
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
-                <p>{product.unit_value}</p>
-                <Button>Commander</Button>
+                {product.CatalogItems.map((item, index) => (
+                  <p key={index}>{item.price} € / {product.unit_value}</p>
+                ))
+                }
+                <div className='product-cta'>
+                  <input type="number" className='input-quantity' name={product.name} onChange={handleQuantityChange}/>
+                  <Button onClick={handleAddToCartClick}>Ajouter au panier</Button>
+                </div>
               </Card>
             ))
           }
