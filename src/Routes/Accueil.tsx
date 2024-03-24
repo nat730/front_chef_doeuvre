@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu';
 import MainMenu from '@/components/MainMenu';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export interface Product {
     id: number;
@@ -16,17 +17,19 @@ export interface Product {
     category_id: number;
     updated_at: string;
     created_at: string;
-    newCatalogItem: {
-      id: number;
-      price: number;
-      price_asso: number;
-      image: string;
-      product_id: number;
-      updated_at: string;
-      created_at: string;
-      catalog_id: number | null;
-    },
+    CatalogItem: CatalogItem,
     categoryName: string;
+}
+
+export interface CatalogItem {
+  id: number;
+  price: number;
+  price_asso: number;
+  image: string;
+  product_id: number;
+  updated_at: string;
+  created_at: string;
+  catalog_id: number | null;
 }
 
 function Accueil() {
@@ -99,14 +102,17 @@ function Accueil() {
         <div className="content">
           {user && <h1>Bonjour {user}</h1>}
         </div>
-        <div className="product-content">
+        <div className='product-category'>
           {products &&
             products.map((product, index) => (
-              <Card key={index} className="card">
-                {/* <img src={product.newCatalogItem.image} alt={product.name} /> */}
+              <Card key={index} className="product-card">
+                {product.CatalogItem &&
+                  <img src={product.CatalogItem.image} alt={product.name} />
+                }
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p>{product.unit_value}</p>
+                <Button>Commander</Button>
               </Card>
             ))
           }
