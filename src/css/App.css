@@ -279,6 +279,28 @@ header {
   border-bottom: #303030 1px solid;
 }
 
+.product-cta {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  border-bottom: #303030 1px solid;
+}
+
+.input-quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 1rem;
+  gap: 1rem;
+  border-bottom: #303030 1px solid;
+}
+
 .gauche {
   display: flex;
   flex-direction: column;
