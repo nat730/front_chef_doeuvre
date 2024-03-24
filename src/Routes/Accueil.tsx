@@ -6,6 +6,7 @@ import '../css/mobile.css';
 import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu';
 import MainMenu from '@/components/MainMenu';
+import { Card } from '@/components/ui/card';
 
 export interface Product {
     id: number;
@@ -60,25 +61,25 @@ function Accueil() {
     }, []
   );
 
-  useEffect(
-    () => {
-      const getProducts = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/api/productcatalogitem', {
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            }
-          });
-          const data = await response.json();
-          setProducts(data);
-          console.log('data', data);
-          console.log('products', products);
-        } catch (error) {
-          console.log('error', error);
-      }
-    }
-    getProducts();
-  }, []);
+ useEffect(
+   () => {
+     const getProducts = async () => {
+       try {
+         const response = await fetch('http://localhost:3000/api/productcatalogitem', {
+           headers: {
+             'Authorization': 'Bearer ' + localStorage.getItem('token'),
+           }
+         });
+         const data = await response.json();
+         setProducts(data);
+         console.log('data', data);
+         console.log('products', products);
+       } catch (error) {
+         console.log('error', error);
+     }
+   }
+   getProducts();
+ }, []);
 
   const toggleMainMenu = useCallback(
     () => {
@@ -101,7 +102,12 @@ function Accueil() {
         <div className="product-content">
           {products &&
             products.map((product, index) => (
-              <div key={index}>{product.name}</div>
+              <Card key={index} className="card">
+                {/* <img src={product.newCatalogItem.image} alt={product.name} /> */}
+                <h2>{product.name}</h2>
+                <p>{product.description}</p>
+                <p>{product.unit_value}</p>
+              </Card>
             ))
           }
         </div>
