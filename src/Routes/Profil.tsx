@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
 import MainMenu from "@/components/MainMenu";
 import UserMenu from "@/components/UserMenu";
 import { useEffect, useState } from "react";
