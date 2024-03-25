@@ -1,36 +1,16 @@
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import '../css/App.css';
-import '../css/Card.css';
-import '../css/mobile.css';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import '@/css/App.css';
+import '@/css/Card.css';
+import '@/css/mobile.css';
 import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu/UserMenu';
 import MainMenu from '@/components/MainMenu/MainMenu';
 import Cart from '@/components/Cart/Cart';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import { useStore } from '@/components/Cart/Zustand';
+import { IProduct } from '@/definition';
 
-export interface IProduct {
-    id: number;
-    name: string;
-    description: string;
-    category_id: number;
-    unit_value: string;
-    created_at: string;
-    updated_at: string;
-    CatalogItems: [
-      {
-        id: number;
-        price: number;
-        price_by_unity_asso: number;
-        image: string;
-        product_id: number;
-        updated_at: string;
-        created_at: string;
-        catalog_id: number | null;
-      }
-    ]
-    categoryName: string;
-}
 
 function Accueil() {
 
@@ -99,6 +79,12 @@ function Accueil() {
       setIsCartOpen(!isCartOpen);
     }, [isCartOpen])
 
+    const { addItem } = useStore();
+
+    const handleAddToCart = (product: IProduct, quantity: number) => {
+      addItem({ id: product.id, name: product.name, quantity });
+    };
+
   return (
     <div className="app">
       {isMainMenuOpen && <MainMenu toggleMainMenu={() => toggleMainMenu()}/>}
@@ -109,10 +95,10 @@ function Accueil() {
         <div className="content">
           {user && <h1>Bonjour {user}</h1>}
         </div>
-        <ProductCard products={products} />
         <div className="basket">
         </div>
       </div>
+      <ProductCard products={products} onAddToCart={handleAddToCart} />
       <Footer />
     </div>
   );
