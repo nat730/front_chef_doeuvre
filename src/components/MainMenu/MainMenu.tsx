@@ -1,3 +1,4 @@
+import './styles.css'
 import { Home, List, MessageCircleQuestion, X } from "lucide-react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +30,7 @@ const MainMenu = ({ toggleMainMenu }: MainMenuProps) => {
       localStorage.removeItem('token');
       fetch('http://localhost:3000/api/auth/local/logout')
       navigate('/');
-    }, [navigate]);    
+    }, [navigate]);
 
   return (
     <div className='main-menu'>
