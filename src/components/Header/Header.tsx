@@ -1,7 +1,8 @@
+import './styles.css'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CircleUserIcon, Menu, ShoppingCart, UserCheck } from 'lucide-react';
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { CircleUserIcon, Menu, ShoppingCart, UserCheck } from 'lucide-react'
+import { useCallback } from "react"
+import { useNavigate } from "react-router-dom"
 
 type HeaderProps = {
   username: string | null;

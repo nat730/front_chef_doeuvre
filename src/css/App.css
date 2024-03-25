@@ -40,22 +40,6 @@ body{
   width : 100%;
 }
 
-header {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  min-height: 10vh;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #333;
-  color: white;
-  text-align: center;
-}
 
 .main-title-container {
   display: flex;
@@ -322,12 +306,7 @@ header {
   width:100%;
 }
 
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  min-height: 10vh;
-}
+
 
 
 .basket_Header {

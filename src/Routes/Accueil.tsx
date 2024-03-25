@@ -1,12 +1,12 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 import '../css/App.css';
 import '../css/Card.css';
 import '../css/mobile.css';
 import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu';
 import MainMenu from '@/components/MainMenu';
-import Cart from '@/components/Cart';
+import Cart from '@/components/Cart/Cart';
 import ProductCard from '@/components/ProductCard';
 
 export interface IProduct {
