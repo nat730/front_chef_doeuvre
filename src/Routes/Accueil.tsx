@@ -5,7 +5,7 @@ import '../css/Card.css';
 import '../css/mobile.css';
 import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu';
-import MainMenu from '@/components/MainMenu';
+import MainMenu from '@/components/MainMenu/MainMenu';
 import Cart from '@/components/Cart/Cart';
 import ProductCard from '@/components/ProductCard';
 
