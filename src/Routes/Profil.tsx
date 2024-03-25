@@ -17,14 +17,7 @@ const UserInfo = () => {
     const [user, setUser] = useState<User | null>(null);
     const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-
-    const toggleMainMenu = () => {
-      setIsMainMenuOpen(!isMainMenuOpen);
-    };
-
-    const toggleUserMenu = () => {
-      setIsUserMenuOpen(!isUserMenuOpen);
-    };
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -46,6 +39,18 @@ const UserInfo = () => {
         fetchUser();
     }, []);
 
+    const toggleMainMenu = () => {
+      setIsMainMenuOpen(!isMainMenuOpen);
+    };
+
+    const toggleUserMenu = () => {
+      setIsUserMenuOpen(!isUserMenuOpen);
+    };
+
+    const toggleCart = () => {
+      setIsCartOpen(!isCartOpen);
+    };
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     };
@@ -54,7 +59,7 @@ const UserInfo = () => {
         <div className="app">
           {isMainMenuOpen && <MainMenu toggleMainMenu={toggleMainMenu} />}
           {isUserMenuOpen && user && <UserMenu user={user.firstname} toggleUserMenu={toggleUserMenu} />}
-          {user && <Header username={user.firstname} toggleMainMenu={toggleMainMenu} toggleUserMenu={toggleUserMenu} />}
+          {user && <Header username={user.firstname} toggleMainMenu={toggleMainMenu} toggleUserMenu={toggleUserMenu} toggleCart={toggleCart}/>}
           <form onSubmit={handleSubmit}>
             <h2>INFORMATIONS</h2>
             <label htmlFor="pseudo">Nom : </label>

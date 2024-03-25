@@ -6,6 +6,7 @@ import '../css/mobile.css';
 import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu';
 import MainMenu from '@/components/MainMenu';
+import Cart from '@/components/Cart';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -37,7 +38,8 @@ function Accueil() {
   const [user, setUser] = useState<string | null>(null);
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(
     () => {
@@ -92,14 +94,18 @@ function Accueil() {
 
   const toggleUserMenu = useCallback(() => {
       setIsUserMenuOpen(!isUserMenuOpen);
-    }, [isUserMenuOpen]
-  )
+    }, [isUserMenuOpen])
+
+    const toggleCart = useCallback(() => {
+      setIsCartOpen(!isCartOpen);
+    }, [isCartOpen])
 
   return (
     <div className="app">
       {isMainMenuOpen && <MainMenu toggleMainMenu={() => toggleMainMenu()}/>}
       {isUserMenuOpen && <UserMenu user={user} toggleUserMenu={() => toggleUserMenu()}/>}
-       <Header username={user} toggleMainMenu={() => toggleMainMenu()} toggleUserMenu={() => toggleUserMenu()}/>
+      {isCartOpen && <Cart toggleCart={() => toggleCart()}/>}
+       <Header username={user} toggleMainMenu={() => toggleMainMenu()} toggleUserMenu={() => toggleUserMenu()} toggleCart={() => toggleCart()}/>
       <div className="main">
         <div className="content">
           {user && <h1>Bonjour {user}</h1>}

@@ -7,9 +7,10 @@ type HeaderProps = {
   username: string | null;
   toggleMainMenu: () => void;
   toggleUserMenu: () => void;
+  toggleCart: () => void;
 };
 
-const Header = ({username, toggleMainMenu, toggleUserMenu}: HeaderProps) => {
+const Header = ({username, toggleMainMenu, toggleUserMenu, toggleCart}: HeaderProps) => {
 
   const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const Header = ({username, toggleMainMenu, toggleUserMenu}: HeaderProps) => {
         {!username && <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={() => handleConnexionClick()}/>}
         {username && <UserCheck size={25} strokeWidth={2} className="user-header" onClick={() => toggleUserMenu()}/>}
         <div className='cart-icon-container'>
-          <ShoppingCart size={25} strokeWidth={2} className="basket-header"/>
+          <ShoppingCart size={25} strokeWidth={2} className="basket-header" onClick={() => toggleCart()}/>
         </div>
       </div>
     </header>
