@@ -7,10 +7,9 @@ import { useCallback, useEffect, useState } from 'react';
 import UserMenu from '@/components/UserMenu';
 import MainMenu from '@/components/MainMenu';
 import Cart from '@/components/Cart';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import ProductCard from '@/components/ProductCard';
 
-export interface Product {
+export interface IProduct {
     id: number;
     name: string;
     description: string;
@@ -39,7 +38,7 @@ function Accueil() {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [products, setProducts] = useState<IProduct[] | null>(null);
 
   useEffect(
     () => {
@@ -110,29 +109,7 @@ function Accueil() {
         <div className="content">
           {user && <h1>Bonjour {user}</h1>}
         </div>
-        <div className='product-category'>
-          {products &&
-            products.map((product, index) => (
-              <Card key={index} className="product-card">
-                {product.CatalogItems !== undefined &&
-                  product.CatalogItems.map((item, index) => (
-                    <img key={index} src={item.image} alt={product.name} />
-                  ))
-                }
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
-                {product.CatalogItems.map((item, index) => (
-                  <p key={index}>{item.price} € / {product.unit_value}</p>
-                ))
-                }
-                <div className='product-cta'>
-                  <input type="number" className='input-quantity' name={product.name}/>
-                  <Button>Ajouter au panier</Button>
-                </div>
-              </Card>
-            ))
-          }
-        </div>
+        <ProductCard products={products} />
         <div className="basket">
         </div>
       </div>
