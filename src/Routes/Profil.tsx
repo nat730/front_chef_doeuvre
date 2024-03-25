@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import MainMenu from "@/components/MainMenu/MainMenu";
-import UserMenu from "@/components/UserMenu";
+import UserMenu from "@/components/UserMenu/UserMenu";
 import { useEffect, useState } from "react";
 
 interface User {

@@ -1,3 +1,4 @@
+import './styles.css'
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -35,20 +36,20 @@ const Cart = ({toggleCart}: CartProps) => {
 
   return (
     <>
-      <div className='user-menu'>
-        <div className="left-user-menu">
-          <div className='user-menu-close'>
-            <X size={25} strokeWidth={2} className="close-user-menu" onClick={() => toggleCart()}/>
+      <div className='cart-menu'>
+        <div className="left-cart-menu">
+          <div className='cart-menu-close'>
+            <X size={25} strokeWidth={2} className="close-cart-menu" onClick={() => toggleCart()}/>
           </div>
         </div>
-        <div className="right-user-menu">
-          <div className="user-menu-top-container">
-            <div className="user-menu-title-container">
-              <h1 className="user-menu-title">Mon Panier</h1>
+        <div className="right-cart-menu">
+          <div className="cart-menu-top-container">
+            <div className="cart-menu-title-container">
+              <h1 className="cart-menu-title">Mon Panier</h1>
             </div>
           </div>
-          <div className="user-menu-content">
-            <div className="user-menu-profil-content">
+          <div className="cart-menu-content">
+            <div className="cart-menu-profil-content">
               <Input placeholder="Entrer une somme" type="number" onChange={handleValueChange} />
               <Button onClick={handleGenerateRandomCart}>Générer un panier</Button>
             </div>
