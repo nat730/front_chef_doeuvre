@@ -14,7 +14,7 @@ const ProductCard = ({products}: IProductCard) => {
       {products &&
         products.map((product, index) => (
           <Card key={index} className="product-card">
-            {product.CatalogItems !== undefined &&
+            {product.CatalogItems &&
               product.CatalogItems.map((item, index) => (
                 <img key={index} src={item.image} alt={product.name} />
               ))
