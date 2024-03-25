@@ -1,6 +1,7 @@
+import './styles.css'
 import { IProduct } from "@/Routes/Accueil";
-import { Card } from "./ui/card";
-import { Button } from "./ui/button";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 
 interface IProductCard {
   products: IProduct[] | null;
