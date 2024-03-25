@@ -14,14 +14,14 @@ interface User {
 }
 
 const UserInfo = () => {
-    const [user, setUser] = useState<User|null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  
+
     const toggleMainMenu = () => {
       setIsMainMenuOpen(!isMainMenuOpen);
     };
-  
+
     const toggleUserMenu = () => {
       setIsUserMenuOpen(!isUserMenuOpen);
     };
@@ -53,8 +53,8 @@ const UserInfo = () => {
     return (
         <div className="app">
           {isMainMenuOpen && <MainMenu toggleMainMenu={toggleMainMenu} />}
-          {isUserMenuOpen && <UserMenu user={user} toggleUserMenu={toggleUserMenu} />}
-          <Header username={user} toggleMainMenu={toggleMainMenu} toggleUserMenu={toggleUserMenu} />
+          {isUserMenuOpen && user && <UserMenu user={user.firstname} toggleUserMenu={toggleUserMenu} />}
+          {user && <Header username={user.firstname} toggleMainMenu={toggleMainMenu} toggleUserMenu={toggleUserMenu} />}
           <form onSubmit={handleSubmit}>
             <h2>INFORMATIONS</h2>
             <label htmlFor="pseudo">Nom : </label>
@@ -77,5 +77,5 @@ const UserInfo = () => {
         </div>
       );
     };
-    
+
 export default UserInfo;
