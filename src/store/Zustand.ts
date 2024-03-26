@@ -15,16 +15,19 @@ type Store = {
   cartItems: { [id: number]: CartItem };
   user: User | null;
   isMainMenuOpen: boolean;
+  isUserMenuOpen: boolean;
   addItem: (item: CartItem) => void;
   removeItem: (item: CartItem) => void;
   setUser: (user: User) => void;
   setIsMainMenuOpen: (isOpen: boolean) => void;
+  setIsUserMenuOpen: (isOpen: boolean) => void;
 };
 
 export const useStore = create<Store>((set) => ({
   cartItems: {},
   user: null,
   isMainMenuOpen: false,
+  isUserMenuOpen: false,
   addItem: (item) => set((state) => {
     const newCartItems = { ...state.cartItems };
     console.log(newCartItems,"newcart");
@@ -43,4 +46,5 @@ export const useStore = create<Store>((set) => ({
   }),
   setUser: (user) => set({ user }),
   setIsMainMenuOpen: (isOpen) => set({ isMainMenuOpen: isOpen }),
+  setIsUserMenuOpen: (isOpen) => set({ isUserMenuOpen: isOpen }),
   }));
