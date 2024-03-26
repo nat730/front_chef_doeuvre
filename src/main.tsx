@@ -9,6 +9,7 @@ import Accueil from "./Routes/Accueil";
 import Inscription from "./Routes/Inscription";
 import Page from "./components/Page";
 import UserInfo from "./Routes/Profil";
+import MainMenu from "./components/MainMenu/MainMenu";
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,9 @@ const rootElement = document.getElementById("root");
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <div className="router">
+        <RouterProvider router={router} />
+      </div>
     </React.StrictMode>
   );
 }
