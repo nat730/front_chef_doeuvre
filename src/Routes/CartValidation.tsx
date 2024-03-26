@@ -30,7 +30,7 @@ const CartValidation = () => {
             </button>
           </li>
         ))}
-            </ul>
+      </ul>
       <Button onClick={handleValidationClick}>Valider mon panier</Button>
     </>
   )
