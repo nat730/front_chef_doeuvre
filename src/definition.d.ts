@@ -6,10 +6,10 @@ export interface IProduct {
     unit_value: string;
     created_at: string;
     updated_at: string;
-    CatalogItems: 
+    CatalogItems:
       {
         id: number;
-        price: number;
+        price_by_unity: number;
         price_by_unity_asso: number;
         image: string;
         product_id: number;
