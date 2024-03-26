@@ -5,9 +5,12 @@ import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
+import { useStore } from '@/store/Zustand';
+
 
 const Connexion = () => {
   const navigate = useNavigate();
+  const { setUser } = useStore();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
 
@@ -34,6 +37,7 @@ const Connexion = () => {
     if(data) {
       navigate('/')
       localStorage.setItem('token', data.jwtToken)
+      setUser(data.user.firstname)
     }
     else {
       setIdentifier('')

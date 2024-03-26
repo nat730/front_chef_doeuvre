@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import MainMenu from "./MainMenu/MainMenu";
 
 interface IPageProps {
   protectedPage: boolean;
@@ -41,6 +42,8 @@ const Page = ({protectedPage, Content}: IPageProps) => {
 
   return (
     <div className={"route" + (protectedPage ? " protected-route" : "")}>
+      <MainMenu />
+
       <Content />
     </div>
   )

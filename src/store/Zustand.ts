@@ -8,7 +8,7 @@ export type CartItem = {
 };
 
 export type User = {
-  username: string;
+  firstname: string;
 }
 
 type Store = {

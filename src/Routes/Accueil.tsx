@@ -1,23 +1,17 @@
-import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import '@/css/App.css';
 import '@/css/Card.css';
 import '@/css/mobile.css';
-import { useCallback, useEffect, useState } from 'react';
-import UserMenu from '@/components/UserMenu/UserMenu';
-import MainMenu from '@/components/MainMenu/MainMenu';
-import Cart from '@/components/Cart/Cart';
+import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { useStore } from '@/store/Zustand';
 import { IProduct } from '@/definition';
+import Header from '@/components/Header/Header';
 
 
 function Accueil() {
 
   const [user, setUser] = useState<string | null>(null);
-  const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [products, setProducts] = useState<IProduct[] | null>(null);
 
   useEffect(
@@ -65,20 +59,6 @@ function Accueil() {
    console.log('products', products);
  }, []);
 
-  const toggleMainMenu = useCallback(
-    () => {
-      setIsMainMenuOpen(!isMainMenuOpen);
-    }, [isMainMenuOpen]
-  )
-
-  const toggleUserMenu = useCallback(() => {
-      setIsUserMenuOpen(!isUserMenuOpen);
-    }, [isUserMenuOpen])
-
-    const toggleCart = useCallback(() => {
-      setIsCartOpen(!isCartOpen);
-    }, [isCartOpen])
-
     const { addItem } = useStore();
 
     const handleAddToCart = (product: IProduct, quantity: number) => {
@@ -88,11 +68,8 @@ function Accueil() {
 
   return (
     <div className="app">
-      {isMainMenuOpen && <MainMenu toggleMainMenu={() => toggleMainMenu()}/>}
-      {isUserMenuOpen && <UserMenu user={user} toggleUserMenu={() => toggleUserMenu()}/>}
-      {isCartOpen && <Cart toggleCart={() => toggleCart()}/>}
-       <Header username={user} toggleMainMenu={() => toggleMainMenu()} toggleUserMenu={() => toggleUserMenu()} toggleCart={() => toggleCart()}/>
       <div className="main">
+        <Header />
         <div className="content">
           {user && <h1>Bonjour {user}</h1>}
         </div>
