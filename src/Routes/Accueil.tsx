@@ -82,7 +82,8 @@ function Accueil() {
     const { addItem } = useStore();
 
     const handleAddToCart = (product: IProduct, quantity: number) => {
-      addItem({ id: product.id, name: product.name, quantity });
+      const price = product.CatalogItems[0].price_by_unity;
+      addItem({ id: product.id, price, name: product.name, quantity });
     };
 
   return (
@@ -98,7 +99,7 @@ function Accueil() {
         <div className="basket">
         </div>
       </div>
-      <ProductCard products={products} onAddToCart={handleAddToCart} />
+      <ProductCard products={products} onAddToCart={handleAddToCart}/>
       <Footer />
     </div>
   );
