@@ -28,7 +28,7 @@ const ProductCard = ({ products, onAddToCart }: IProductCard) => {
               <h2>{product.name}</h2>
               <p>{product.description}</p>
               {product.CatalogItems.map((item, index) => (
-                <p key={index}>{item.price} € / {product.unit_value}</p>
+                <p key={index}>{item.price_by_unity} € / {product.unit_value}</p>
               ))}
               <div className='product-cta'>
                 <input type="number" className='input-quantity' name={product.name} onChange={(e) => handleAddToCart(product, e)} />
