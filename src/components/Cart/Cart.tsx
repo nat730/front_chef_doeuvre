@@ -1,6 +1,6 @@
 import './styles.css'
-import { X } from "lucide-react";
-import { useStore } from "./Zustand";
+import { Minus, X } from "lucide-react";
+import { CartItem, useStore } from "./Zustand";
 
 
 interface CartProps {
@@ -8,7 +8,11 @@ interface CartProps {
 }
 
 const Cart = ({ toggleCart }: CartProps) => {
-  const { cartItems } = useStore();
+  const { cartItems, removeItem } = useStore();
+
+  const handleRemoveItem = (item: CartItem) => {
+    removeItem(item);
+  };
 
   return (
     <>
@@ -24,10 +28,15 @@ const Cart = ({ toggleCart }: CartProps) => {
               <h1 className="cart-menu-title">Mon Panier</h1>
             </div>
             <ul>
-              {Object.values(cartItems).map((item) => (
-                <li key={item.id}>{item.name}</li>
-              ))}
-            </ul>
+          {Object.values(cartItems).map((item) => (
+            <li key={item.id}>
+              {item.name}
+              <button onClick={() => handleRemoveItem(item)}>
+                <Minus size={25} strokeWidth={2} />
+              </button>
+            </li>
+          ))}
+        </ul>
           </div>
           <div className="user-menu-content">
           </div>
