@@ -1,6 +1,6 @@
 import './styles.css'
 import { Minus, X } from "lucide-react";
-import { CartItem, useStore } from "./Zustand";
+import { CartItem, useStore } from "../../store/Zustand";
 
 
 interface CartProps {

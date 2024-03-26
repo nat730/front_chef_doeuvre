@@ -8,7 +8,7 @@ import UserMenu from '@/components/UserMenu/UserMenu';
 import MainMenu from '@/components/MainMenu/MainMenu';
 import Cart from '@/components/Cart/Cart';
 import ProductCard from '@/components/ProductCard/ProductCard';
-import { useStore } from '@/components/Cart/Zustand';
+import { useStore } from '@/store/Zustand';
 import { IProduct } from '@/definition';
 
 
