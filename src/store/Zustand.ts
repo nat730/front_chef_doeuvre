@@ -7,10 +7,16 @@ export type CartItem = {
   quantity:number;
 };
 
-type Store = {  
+export type User = {
+  username: string;
+}
+
+type Store = {
   cartItems: { [id: number]: CartItem };
   addItem: (item: CartItem) => void;
   removeItem: (item: CartItem) => void;
+  user: User | null;
+  setUser: (user: User) => void;
 };
 
 export const useStore = create<Store>((set) => ({
@@ -18,7 +24,7 @@ export const useStore = create<Store>((set) => ({
   addItem: (item) => set((state) => {
     const newCartItems = { ...state.cartItems };
     console.log(newCartItems,"newcart");
-    
+
     if (newCartItems[item.id]) {
       newCartItems[item.id].quantity += item.quantity;
     } else {
@@ -31,4 +37,6 @@ export const useStore = create<Store>((set) => ({
     delete newCartItems[item.id];
     return { cartItems: newCartItems };
   }),
+  user: null,
+  setUser: (user) => set({ user }),
   }));
