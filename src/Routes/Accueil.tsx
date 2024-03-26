@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { useStore } from '@/store/Zustand';
 import { IProduct } from '@/definition';
-import Header from '@/components/Header/Header';
 
 
 function Accueil() {
@@ -69,7 +68,6 @@ function Accueil() {
   return (
     <div className="app">
       <div className="main">
-        <Header />
         <div className="content">
           {user && <h1>Bonjour {user}</h1>}
         </div>
