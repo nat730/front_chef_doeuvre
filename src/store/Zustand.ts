@@ -9,6 +9,11 @@ export type CartItem = {
 
 export type User = {
   firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+    phone: string;
+    address: string;
 }
 
 type Store = {
