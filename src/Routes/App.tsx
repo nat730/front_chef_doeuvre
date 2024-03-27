@@ -8,6 +8,7 @@ import Inscription from "./Inscription";
 import Page from "../components/Page";
 import UserInfo from "./Profil";
 import InvoicePage from "./invoice";
+import CartValidation from "./CartValidation";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/user',
     element: <Page protectedPage={true} Content={UserInfo} />
+  },
+  {
+    path: '/cart',
+    element: <Page protectedPage={true} Content={CartValidation} />
   },
   {
     path: '/invoice/:id',

@@ -1,14 +1,16 @@
-import { useStore } from "@/components/Cart/Zustand";
+import '@/css/CartValidation.css';
+import '@/components/Cart/styles.css';
 import ShopSteps from "@/components/ShopSteps/ShopSteps";
 import { Button } from "@/components/ui/button";
-import { Minus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "@/store/Zustand";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
 
 
 const CartValidation = () => {
 
-  const { cartItems, removeItem } = useStore();
+  const { cartItems } = useStore();
   const navigate = useNavigate();
 
   const handleValidationClick = () => {
@@ -17,22 +19,26 @@ const CartValidation = () => {
 
 
   return (
-    <>
+    <div className="cart-validation-container">
       <h1>Détail de votre panier</h1>
       <p><a onClick={() => navigate('/connexion')}>Connectez-vous</a> pour sauvegarder votre panier</p>
       <ShopSteps />
-      <ul>
+      <div className="cart-menu-content">
         {Object.values(cartItems).map((item) => (
-          <li key={item.id}>
-            {item.name}
-            <button onClick={() => removeItem(item)}>
-            <Minus size={25} strokeWidth={2} />
-            </button>
-          </li>
+          <Card key={item.id} className='cart-item'>
+            <CardContent className='cart-item-description'>
+              <CardTitle>{item.name}</CardTitle>
+              <CardDescription>{item.price} €</CardDescription>
+              <CardDescription>Quantité : {item.quantity}</CardDescription>
+            </CardContent>
+            <CardContent className='cart-validation-total-item'>
+              {item.quantity * item.price} €
+            </CardContent>
+          </Card>
         ))}
-      </ul>
+      </div>
       <Button onClick={handleValidationClick}>Valider mon panier</Button>
-    </>
+    </div>
   )
 };
 
