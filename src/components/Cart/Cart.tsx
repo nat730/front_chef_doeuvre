@@ -1,6 +1,7 @@
 import './styles.css'
 import { Minus, X } from "lucide-react";
 import { CartItem, useCartMenuStore, useStore } from "../../store/Zustand";
+import { Button } from '../ui/button';
 
 const Cart = () => {
   const { cartItems, removeItem } = useStore();
@@ -24,17 +25,23 @@ const Cart = () => {
               <h1 className="cart-menu-title">Mon Panier</h1>
             </div>
           </div>
-          <div className="user-menu-content">
-            <ul>
-              {Object.values(cartItems).map((item) => (
-                <li key={item.id}>
-                  {item.name}
-                  <button onClick={() => handleRemoveItem(item)}>
-                    <Minus size={25} strokeWidth={2} />
-                  </button>
-                </li>
-              ))}
-            </ul>
+          <div className="cart-menu-content">
+            {Object.values(cartItems).map((item) => (
+              <div key={item.id} className='cart-item'>
+                <div className='cart-item-description'>
+                  <div>{item.name}</div>
+                  <div>{item.quantity}</div>
+                </div>
+                <Button onClick={() => handleRemoveItem(item)}>
+                  <Minus size={20} strokeWidth={2} />
+                </Button>
+              </div>
+            ))}
+            <div className='cart-menu-footer'>
+              <div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
