@@ -99,10 +99,3 @@ body{
   flex-direction: row;
   width:100%;
 }
-
-
-
-
-.basket_Header {
-  z-index: 999;
-}

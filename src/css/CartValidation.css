@@ -1,0 +1,9 @@
+.cart-validation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-validation-total-item {
+  font-weight: 700;
+}
