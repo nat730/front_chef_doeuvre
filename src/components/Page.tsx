@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MainMenu from "./MainMenu/MainMenu";
 import Header from "./Header/Header";
-import { useMainMenuStore } from "@/store/Zustand";
-
+import { useCartMenuStore, useMainMenuStore, useUserMenuStore, useUserStore } from "@/store/Zustand";
+import UserMenu from "./UserMenu/UserMenu";
+import Cart from "./Cart/Cart";
 
 interface IPageProps {
   protectedPage: boolean;
@@ -13,6 +14,9 @@ interface IPageProps {
 const Page = ({protectedPage, Content}: IPageProps) => {
   const navigate = useNavigate();
   const { isMainMenuOpen } = useMainMenuStore();
+  const { isUserMenuOpen } = useUserMenuStore();
+  const { isCartMenuOpen } = useCartMenuStore();
+  const { user, setUser } = useUserStore();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -30,6 +34,9 @@ const Page = ({protectedPage, Content}: IPageProps) => {
           }
         })
         const data = await response.json();
+        if(!user) {
+          setUser(data.user.firstname)
+        }
         if (data.error) {
           localStorage.removeItem('token');
           navigate('/connexion');
@@ -48,6 +55,8 @@ const Page = ({protectedPage, Content}: IPageProps) => {
     <div className={"route" + (protectedPage ? " protected-route" : "")}>
       <Header />
       {isMainMenuOpen && <MainMenu />}
+      {isUserMenuOpen && <UserMenu />}
+      {isCartMenuOpen && <Cart />}
       <Content />
     </div>
   )
