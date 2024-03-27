@@ -4,39 +4,14 @@ import '@/css/Card.css';
 import '@/css/mobile.css';
 import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard/ProductCard';
-import { useStore } from '@/store/Zustand';
+import { useUserStore, useStore } from '@/store/Zustand';
 import { IProduct } from '@/definition';
 
 
 function Accueil() {
-
-  const [user, setUser] = useState<string | null>(null);
+  const { user } = useUserStore()
+  const { addItem } = useStore();
   const [products, setProducts] = useState<IProduct[] | null>(null);
-
-  useEffect(
-    () => {
-      const getUserInfo = async () => {
-          try {
-            const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
-              headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),
-              }
-            });
-            const data = await response.json();
-            if(data) {
-              setUser(data.firstname);
-            }
-          } catch (error) {
-            console.log('error', error);
-          }
-        }
-        if (localStorage.getItem('token')) {
-        getUserInfo();
-      } else {
-        console.log('no token');
-      }
-    }, []
-  );
 
   useEffect(
     () => {
@@ -58,7 +33,7 @@ function Accueil() {
    console.log('products', products);
  }, []);
 
-    const { addItem } = useStore();
+
 
     const handleAddToCart = (product: IProduct, quantity: number) => {
       const price = product.CatalogItems[0].price_by_unity;
@@ -69,7 +44,7 @@ function Accueil() {
     <div className="app">
       <div className="main">
         <div className="content">
-          {user && <h1>Bonjour {user}</h1>}
+          {user && <h1>Bonjour {user.firstname}</h1>}
         </div>
         <div className="basket">
         </div>

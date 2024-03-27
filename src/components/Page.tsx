@@ -16,10 +16,12 @@ const Page = ({protectedPage, Content}: IPageProps) => {
   const { isMainMenuOpen } = useMainMenuStore();
   const { isUserMenuOpen } = useUserMenuStore();
   const { isCartMenuOpen } = useCartMenuStore();
-  const { user, setUser } = useUserStore();
+  const { setUser } = useUserStore();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log('init Page', protectedPage, token);
+
 
     if (protectedPage && !token) {
       navigate('/connexion');
@@ -27,6 +29,8 @@ const Page = ({protectedPage, Content}: IPageProps) => {
     }
 
     const getUserInfo = async () => {
+      console.log('token before user me route', token);
+
       try {
         const response = await fetch('http://localhost:3000/api/auth/local/user/me', {
           headers: {
@@ -34,21 +38,24 @@ const Page = ({protectedPage, Content}: IPageProps) => {
           }
         })
         const data = await response.json();
-        setUser(data.user.firstname)
+        console.log('user connected', data)
 
-        if (data.error) {
+        if (data.error && protectedPage) {
           localStorage.removeItem('token');
           navigate('/connexion');
+        }
+        else {
+          setUser(data)
         }
       } catch (error) {
         localStorage.removeItem('token');
       }
     }
 
-    if (protectedPage && token) {
+    if (token) {
       getUserInfo();
     }
-  }, [protectedPage]);
+  }, []);
 
   return (
     <div className={"route" + (protectedPage ? " protected-route" : "")}>
