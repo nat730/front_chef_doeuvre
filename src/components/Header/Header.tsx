@@ -33,6 +33,7 @@ const Header = () => {
       navigate('/connexion');
     }, [navigate])
 
+  console.log('header user store value', user);
 
   return (
     <header className="header-content">
