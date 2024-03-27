@@ -19,6 +19,8 @@ export type User = {
 type Store = {
   cartItems: { [id: number]: CartItem };
   addItem: (item: CartItem) => void;
+  addOneItem: (item: CartItem) => void;
+  removeOneItem: (item: CartItem) => void;
   removeItem: (item: CartItem) => void;
 };
 
@@ -51,6 +53,25 @@ export const useStore = create<Store>((set) => ({
       newCartItems[item.id].quantity += item.quantity;
     } else {
       newCartItems[item.id] = item;
+    }
+    return { cartItems: newCartItems };
+  }),
+  addOneItem: (item) => set((state) => {
+    const newCartItems = { ...state.cartItems };
+    if (newCartItems[item.id]) {
+      newCartItems[item.id].quantity += 1;
+    } else {
+      newCartItems[item.id] = item;
+    }
+    return { cartItems: newCartItems };
+  }),
+  removeOneItem: (item) => set((state) => {
+    const newCartItems = { ...state.cartItems };
+    if (newCartItems[item.id].quantity > 1) {
+      newCartItems[item.id].quantity -= 1;
+      if (newCartItems[item.id].quantity === 0) {
+        delete newCartItems[item.id];
+      }
     }
     return { cartItems: newCartItems };
   }),
