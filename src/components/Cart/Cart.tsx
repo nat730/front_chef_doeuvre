@@ -1,15 +1,36 @@
 import './styles.css'
 import '@/css/globals.css'
-import { Minus, X } from "lucide-react";
+import { Minus, Plus, X } from "lucide-react";
 import { CartItem, useCartMenuStore, useStore } from "../../store/Zustand";
 import { Button } from '../ui/button';
+import { useNavigate } from 'react-router-dom';
+import { Card, CardContent, CardDescription, CardTitle } from '../ui/card';
 
 const Cart = () => {
-  const { cartItems, removeItem } = useStore();
+  const navigate = useNavigate();
+  const { cartItems, addOneItem, removeOneItem, removeItem } = useStore();
   const { isCartMenuOpen, setIsCartMenuOpen } = useCartMenuStore();
 
   const handleRemoveItem = (item: CartItem) => {
     removeItem(item);
+  };
+
+  const handleCartButtonClick = () => {
+    setIsCartMenuOpen(!isCartMenuOpen);
+    navigate('/cart');
+  };
+
+  const handleShopButtonClick = () => {
+    setIsCartMenuOpen(!isCartMenuOpen);
+    navigate('/');
+  };
+
+  const handleRemoveOneItem = (item: CartItem) => {
+    removeOneItem(item);
+  };
+
+  const handleAddOneItem = (item: CartItem) => {
+    addOneItem(item);
   };
 
   return (
@@ -28,15 +49,19 @@ const Cart = () => {
           </div>
           <div className="cart-menu-content">
             {Object.values(cartItems).map((item) => (
-              <div key={item.id} className='cart-item'>
-                <div className='cart-item-description'>
-                  <div>{item.name}</div>
-                  <div>{item.quantity}</div>
-                </div>
-                <Button onClick={() => handleRemoveItem(item)}>
-                  <Minus size={20} strokeWidth={2} />
+              <Card key={item.id} className='cart-item'>
+                <CardContent className='cart-item-description'>
+                  <CardTitle>{item.name}</CardTitle>
+                  <CardDescription>{item.price} €</CardDescription>
+                </CardContent>
+                <Button onClick={() => handleRemoveItem(item)} className='cart-menu-minus-button'>
+                  <Minus size={10} strokeWidth={2} onClick={() => handleRemoveOneItem(item)}/>
                 </Button>
-              </div>
+                <div>{item.quantity}</div>
+                <Button>
+                  <Plus size={10} strokeWidth={2} onClick={() => handleAddOneItem(item)}/>
+                </Button>
+              </Card>
             ))}
           </div>
             <div className='cart-menu-footer'>
@@ -49,8 +74,8 @@ const Cart = () => {
                 </div>
               </div>
               <div className='cart-menu-footer-buttons-container'>
-                <Button>Voir mon panier</Button>
-                <Button className='button-achat'>Continuer mes achats</Button>
+                <Button onClick={handleCartButtonClick}>Voir mon panier</Button>
+                <Button className='cart-menu-footer-shop-button' onClick={handleShopButtonClick}>Continuer mes achats</Button>
               </div>
             </div>
         </div>
