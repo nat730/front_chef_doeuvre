@@ -2,6 +2,7 @@ import './styles.css'
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
 import { IProduct } from '@/definition';
+import { Input } from '../ui/input';
 
 interface IProductCard {
   products: IProduct[] | null;
@@ -31,7 +32,7 @@ const ProductCard = ({ products, onAddToCart }: IProductCard) => {
                 <p key={index}>{item.price_by_unity} € / {product.unit_value}</p>
               ))}
               <div className='product-cta'>
-                <input type="number" className='input-quantity' name={product.name} onChange={(e) => handleAddToCart(product, e)} />
+                <Input type="number" className='input-quantity' name={product.name} onChange={(e) => handleAddToCart(product, e)} />
                 <Button>Ajouter au panier</Button>
               </div>
             </Card>
