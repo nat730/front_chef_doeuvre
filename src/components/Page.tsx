@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MainMenu from "./MainMenu/MainMenu";
 import Header from "./Header/Header";
+import { useMainMenuStore } from "@/store/Zustand";
 
 
 interface IPageProps {
@@ -11,6 +12,7 @@ interface IPageProps {
 
 const Page = ({protectedPage, Content}: IPageProps) => {
   const navigate = useNavigate();
+  const { isMainMenuOpen } = useMainMenuStore();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -45,7 +47,7 @@ const Page = ({protectedPage, Content}: IPageProps) => {
   return (
     <div className={"route" + (protectedPage ? " protected-route" : "")}>
       <Header />
-      <MainMenu />
+      {isMainMenuOpen && <MainMenu />}
       <Content />
     </div>
   )
