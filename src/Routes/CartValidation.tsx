@@ -20,10 +20,12 @@ const CartValidation = () => {
 
   return (
     <div className="cart-validation-container">
-      <h1>Détail de votre panier</h1>
-      <p><a onClick={() => navigate('/connexion')}>Connectez-vous</a> pour sauvegarder votre panier</p>
       <ShopSteps />
-      <div className="cart-menu-content">
+      <div className="cart-validation-top-container">
+        <h1>Détail de votre panier</h1>
+        <p><a onClick={() => navigate('/connexion')}>Connectez-vous</a> pour sauvegarder votre panier</p>
+      </div>
+      <div className="cart-validation-content">
         {Object.values(cartItems).map((item) => (
           <Card key={item.id} className='cart-item'>
             <CardContent className='cart-item-description'>
@@ -37,7 +39,9 @@ const CartValidation = () => {
           </Card>
         ))}
       </div>
-      <Button onClick={handleValidationClick}>Valider mon panier</Button>
+      <div className='validation-button-container'>
+        <Button onClick={handleValidationClick}>Valider mon panier</Button>
+      </div>
     </div>
   )
 };
