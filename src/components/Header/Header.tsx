@@ -46,7 +46,7 @@ const Header = () => {
       </div>
       <div className='icons-header-container'>
         {!user && <CircleUserIcon size={25} strokeWidth={2} className="user-header" onClick={() => handleConnexionClick()}/>}
-        {user && <UserCheck size={25} strokeWidth={2} className="user-header" onClick={toggleUserMenu}/>}
+        {user?.firstname && <UserCheck size={25} strokeWidth={2} className="user-header" onClick={toggleUserMenu}/>}
         <div className='cart-icon-container'>
           <ShoppingCart size={25} strokeWidth={2} className="basket-header" onClick={toggleCart}/>
         </div>
