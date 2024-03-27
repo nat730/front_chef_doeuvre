@@ -10,6 +10,9 @@ interface OrderItem {
   unity_symbol: string;
   price_per_kg: number;
   price_per_kg_asso: number;
+  order_id{
+
+  }
 }
 
 
@@ -29,7 +32,7 @@ const InvoicePage = () => {
               'Authorization': 'Bearer ' + token,
             }
           });
-        if (!response.ok) {
+        if (!response) {
           throw new Error("Erreur lors de la récupération de l'OrderItem");
         }
         const data = await response.json();
