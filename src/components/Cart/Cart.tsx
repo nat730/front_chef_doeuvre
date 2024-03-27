@@ -37,12 +37,12 @@ const Cart = () => {
                 </Button>
               </div>
             ))}
+          </div>
             <div className='cart-menu-footer'>
               <div>
 
               </div>
             </div>
-          </div>
         </div>
       </div>
     </>
