@@ -10,9 +10,9 @@ interface OrderItem {
   unity_symbol: string;
   price_per_kg: number;
   price_per_kg_asso: number;
-  order_id{
+  // order_id{
 
-  }
+  // }
 }
 
 
@@ -25,7 +25,7 @@ const InvoicePage = () => {
   useEffect(() => {
     const fetchData = async () => {
         console.log(order_id);
-        
+
       try {
         const response = await fetch(`http://localhost:3000/api/orderitem/${order_id}`,{
             headers: {
