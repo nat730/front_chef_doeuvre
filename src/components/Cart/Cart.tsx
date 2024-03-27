@@ -1,4 +1,5 @@
 import './styles.css'
+import '@/css/globals.css'
 import { Minus, X } from "lucide-react";
 import { CartItem, useCartMenuStore, useStore } from "../../store/Zustand";
 import { Button } from '../ui/button';
@@ -39,8 +40,17 @@ const Cart = () => {
             ))}
           </div>
             <div className='cart-menu-footer'>
-              <div>
-
+              <div className='cart-menu-footer-total'>
+                <div>
+                  Prix total
+                </div>
+                <div>
+                  {Object.values(cartItems).reduce((acc, item) => acc + item.price * item.quantity, 0)} €
+                </div>
+              </div>
+              <div className='cart-menu-footer-buttons-container'>
+                <Button>Voir mon panier</Button>
+                <Button className='button-achat'>Continuer mes achats</Button>
               </div>
             </div>
         </div>
