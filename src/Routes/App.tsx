@@ -7,6 +7,7 @@ import Accueil from "./Accueil";
 import Inscription from "./Inscription";
 import Page from "../components/Page";
 import UserInfo from "./Profil";
+import InvoicePage from "./invoice";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/user',
     element: <Page protectedPage={true} Content={UserInfo} />
+  },
+  {
+    path: '/invoice/:id',
+    element: <Page protectedPage={true} Content={InvoicePage} />
   }
 ]);
 
