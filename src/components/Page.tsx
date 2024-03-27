@@ -34,9 +34,8 @@ const Page = ({protectedPage, Content}: IPageProps) => {
           }
         })
         const data = await response.json();
-        if(!user) {
-          setUser(data.user.firstname)
-        }
+        setUser(data.user.firstname)
+
         if (data.error) {
           localStorage.removeItem('token');
           navigate('/connexion');
