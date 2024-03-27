@@ -9,6 +9,7 @@ import Page from "../components/Page";
 import UserInfo from "./Profil";
 import InvoicePage from "./invoice";
 import CartValidation from "./CartValidation";
+import Delivery from "./Delivery";
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/cart',
-    element: <Page protectedPage={true} Content={CartValidation} />
+    element: <Page protectedPage={false} Content={CartValidation} />
+  },
+  {
+    path: '/delivery',
+    element: <Page protectedPage={true} Content={Delivery} />
   },
   {
     path: '/invoice/:id',
