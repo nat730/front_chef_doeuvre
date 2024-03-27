@@ -1,4 +1,4 @@
-import { useStore } from '@/store/Zustand'
+import { useCartMenuStore, useMainMenuStore, useUserMenuStore, useUserStore } from '@/store/Zustand'
 import './styles.css'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserIcon, Menu, ShoppingCart, UserCheck } from 'lucide-react'
@@ -8,7 +8,10 @@ import { useNavigate } from "react-router-dom"
 const Header = () => {
 
   const navigate = useNavigate();
-  const { user, isMainMenuOpen, setIsMainMenuOpen, isUserMenuOpen, setIsUserMenuOpen, isCartOpen, setIsCartOpen } = useStore();
+  const { user } = useUserStore();
+  const { isMainMenuOpen, setIsMainMenuOpen } = useMainMenuStore();
+  const { isUserMenuOpen, setIsUserMenuOpen } = useUserMenuStore();
+  const { isCartMenuOpen, setIsCartMenuOpen } = useCartMenuStore();
 
   const toggleMainMenu = useCallback(() => {
     setIsMainMenuOpen(!isMainMenuOpen);
@@ -21,9 +24,9 @@ const Header = () => {
   }, [isUserMenuOpen, setIsUserMenuOpen]);
 
   const toggleCart = useCallback(() => {
-    setIsCartOpen(!isCartOpen);
-    console.log(isCartOpen);
-  }, [isCartOpen, setIsCartOpen]);
+    setIsCartMenuOpen(!isCartMenuOpen);
+    console.log(isCartMenuOpen);
+  }, [isCartMenuOpen, setIsCartMenuOpen]);
 
   const handleConnexionClick = useCallback(
     () => {
