@@ -3,6 +3,7 @@ import { Card } from "../ui/card";
 import { Button } from "../ui/button";
 import { IProduct } from '@/definition';
 import { Input } from '../ui/input';
+import { useState } from 'react';
 
 interface IProductCard {
   products: IProduct[] | null;
@@ -10,10 +11,20 @@ interface IProductCard {
 }
 
 const ProductCard = ({ products, onAddToCart }: IProductCard) => {
-  const handleAddToCart = (product: IProduct, event: React.ChangeEvent<HTMLInputElement>) => {
-    const quantity = parseInt(event.target.value, 10);
-    onAddToCart(product, quantity);
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+
+  const handleQuantityChange = (productId: string, event: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = event.target.value;
+    if (/^\d+$/.test(newQuantity)) { // vérifie si la valeur est un nombre entier
+      setQuantities({ ...quantities, [productId]: parseInt(newQuantity, 10) });
+    }
   };
+
+  const handleAddToCart = (product: IProduct) => {
+    const productQuantity = quantities[product.id] || 1; // utilise 1 comme quantité par défaut si aucune quantité n'est définie pour le produit
+    onAddToCart(product, productQuantity);
+  };
+
 
   return (
     <>
@@ -32,8 +43,8 @@ const ProductCard = ({ products, onAddToCart }: IProductCard) => {
                 <p key={index}>{item.price_by_unity} € / {product.unit_value}</p>
               ))}
               <div className='product-cta'>
-                <Input type="number" className='input-quantity' name={product.name} onChange={(e) => handleAddToCart(product, e)} />
-                <Button>Ajouter au panier</Button>
+                <Input type="number" className='input-quantity' name={product.name} value={quantities[product.id] || 1} onChange={(event) => handleQuantityChange(product.id.toString(), event)} />
+                <Button onClick={() => handleAddToCart(product)}>Ajouter au panier</Button>
               </div>
             </Card>
           ))
