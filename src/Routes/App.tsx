@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     element: <Page protectedPage={true} Content={Delivery} />
   },
   {
-    path: '/invoice/:id',
+    path: '/invoice/:order_id',
     element: <Page protectedPage={true} Content={InvoicePage} />
   }
 ]);
