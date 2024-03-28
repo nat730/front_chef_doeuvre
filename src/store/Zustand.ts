@@ -69,12 +69,12 @@ export const useStore = create<Store>((set) => ({
     const newCartItems = { ...state.cartItems };
     if (newCartItems[item.id].quantity > 1) {
       newCartItems[item.id].quantity -= 1;
-      if (newCartItems[item.id].quantity === 0) {
-        delete newCartItems[item.id];
-      }
+    } else {
+      delete newCartItems[item.id];
     }
     return { cartItems: newCartItems };
   }),
+  
   removeItem: (item) => set((state) => {
     const newCartItems = { ...state.cartItems };
     delete newCartItems[item.id];

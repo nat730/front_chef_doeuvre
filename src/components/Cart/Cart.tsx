@@ -1,6 +1,6 @@
 import './styles.css'
 import '@/css/globals.css'
-import { Minus, Plus, X } from "lucide-react";
+import { Minus, Plus, X,Trash } from "lucide-react";
 import { CartItem, useCartMenuStore, useStore } from "../../store/Zustand";
 import { Button } from '../ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -54,30 +54,33 @@ const Cart = () => {
                   <CardTitle>{item.name}</CardTitle>
                   <CardDescription>{item.price} €</CardDescription>
                 </CardContent>
-                <Button onClick={() => handleRemoveItem(item)} className='cart-menu-minus-button'>
-                  <Minus size={10} strokeWidth={2} onClick={() => handleRemoveOneItem(item)}/>
+                <Button onClick={() => handleRemoveOneItem(item)} className='cart-menu-minus-button'>
+                  <Minus size={10} strokeWidth={2} />
                 </Button>
                 <div>{item.quantity}</div>
-                <Button>
-                  <Plus size={10} strokeWidth={2} onClick={() => handleAddOneItem(item)}/>
+                <Button onClick={() => handleAddOneItem(item)}>
+                  <Plus size={10} strokeWidth={2} />
+                </Button>
+                <Button onClick={() => handleRemoveItem(item)}>
+                  <Trash size={10} strokeWidth={2} />
                 </Button>
               </Card>
             ))}
           </div>
-            <div className='cart-menu-footer'>
-              <div className='cart-menu-footer-total'>
-                <div>
-                  Prix total
-                </div>
-                <div>
-                  {Object.values(cartItems).reduce((acc, item) => acc + item.price * item.quantity, 0)} €
-                </div>
+          <div className='cart-menu-footer'>
+            <div className='cart-menu-footer-total'>
+              <div>
+                Prix total
               </div>
-              <div className='cart-menu-footer-buttons-container'>
-                <Button onClick={handleCartButtonClick}>Voir mon panier</Button>
-                <Button className='cart-menu-footer-shop-button' onClick={handleShopButtonClick}>Continuer mes achats</Button>
+              <div>
+                {Object.values(cartItems).reduce((acc, item) => acc + item.price * item.quantity, 0)} €
               </div>
             </div>
+            <div className='cart-menu-footer-buttons-container'>
+              <Button onClick={handleCartButtonClick}>Voir mon panier</Button>
+              <Button className='cart-menu-footer-shop-button' onClick={handleShopButtonClick}>Continuer mes achats</Button>
+            </div>
+          </div>
         </div>
       </div>
     </>
